@@ -9,6 +9,7 @@ const DropDown = () => {
     return (
         <div className='flex flex-col items-center bg-secondary p-3 rounded-md gap-3 hover:border-2'>
             <div className='flex w-full justify-between' onClick={() => {
+                console.log("dadsa");
                 setOpen(!open);
             }}>
                 <div>Amin</div>

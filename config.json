@@ -1,5 +1,5 @@
 {
     "app_name": "Friendly Dragons",
     "app_disc": "web site for Friendly Dragons discord server",
-    "api": "http://localhost:3000/"
+    "api": "http://localhost:3000"
 }
