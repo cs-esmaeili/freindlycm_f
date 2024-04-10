@@ -42,7 +42,7 @@ export default function Home() {
 
         <div className="flex flex-col w-2/4 gap-2 overflow-auto">
 
-          <div className="flex w-full h-fit gap-2">
+          {/* <div className="flex w-full h-fit gap-2">
             <div className="flex flex-col w-2/4 bg-primary rounded-lg p-3 gap-2">
               {new Array(9).fill(null).map(() =>
                 <div className="flex bg-secondary p-2 rounded-md items-center">
@@ -104,7 +104,7 @@ export default function Home() {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
 
 
 
