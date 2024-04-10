@@ -9,22 +9,34 @@ import { notifyUser } from '@/app/utils/notification';
 const Token = () => {
 
     let socket = null;
+    
     const [requestStatus, setRequestStatus] = useState({
         error: null,
         loading: true,
         response: null
     });
 
+    const [lastPrice, setLastPrice] = useState(null);
+
 
     useEffect(() => {
         if (requestStatus.response != null) {
-            const lastPrice = requestStatus.response[0];
-            if (lastPrice.change) {
-                console.log("dasd");
-                notifyUser(Config.app_name, lastPrice.token + " K");
+
+            const lastPriceServer = requestStatus.response[0];
+            console.log("server = " + lastPriceServer.token);
+
+            if (lastPriceServer.change && (lastPrice != null && (lastPriceServer.token != lastPrice.token))) {
+                notifyUser(Config.app_name, lastPriceServer.token + " K");
             }
+            setLastPrice(lastPriceServer);
+
         }
     }, [requestStatus.response]);
+
+    useEffect(() => {
+        if (lastPrice)
+            console.log("local = " + lastPrice.token);
+    }, [lastPrice]);
 
     useEffect(() => {
         socket = io(Config.api);
@@ -35,7 +47,7 @@ const Token = () => {
                 response: payload
             });
         });
-        
+
         const handleErrors = (error) => {
             console.log(error);
             setRequestStatus({
@@ -62,7 +74,7 @@ const Token = () => {
             {requestStatus.error && <div className='flex justify-center items-center h-full'>{requestStatus.error}</div>}
             {requestStatus.response &&
                 <>
-                    {requestStatus.response.reverse().map((value, index) => {
+                    {requestStatus.response.map((value, index) => {
                         return (
                             <div className='flex bg-secondary p-3 rounded-md items-center'>
                                 <div className={`w-1/4 ${(value.change) ? "text-green-400" : "text-red-400"}`}>{value.token} K</div>

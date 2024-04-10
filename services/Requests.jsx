@@ -3,8 +3,8 @@ import config from "../config.json";
 
 const prefixUrl = `${config.api}`
 
-export const tokenPriceList = () => {
-    return http.get(`${prefixUrl}/tokenPriceList`);
+export const getGeneralData = () => {
+    return http.get(`${prefixUrl}/getGeneralData`);
 };
 
 // export const updateRegisterPure = (data) => {

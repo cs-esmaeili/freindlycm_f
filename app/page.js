@@ -2,11 +2,9 @@
 
 import VideoJS from "@/app/components/videoPlayer";
 import Image from 'next/image';
-import { LiaExchangeAltSolid } from "react-icons/lia";
 import DropDown from "./components/DropDown";
-import Logo from "./sections/logo";
-import Disc from "./sections/Disc";
 import Token from "./sections/Token";
+import DiscAndLogo from "./sections/DiscAndLogo";
 
 
 export default function Home() {
@@ -35,8 +33,7 @@ export default function Home() {
       <div className="flex w-full p-5 z-20 gap-3 h-screen max-h-screen min-w-0 min-h-0">
 
         <div className="flex flex-col w-1/4 gap-3">
-          <Logo />
-          <Disc />
+          <DiscAndLogo />
           <Token />
         </div>
 
