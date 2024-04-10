@@ -5,6 +5,7 @@ import Image from 'next/image';
 import DropDown from "./components/DropDown";
 import Token from "./sections/Token";
 import DiscAndLogo from "./sections/DiscAndLogo";
+import Users from "./sections/Users";
 
 
 export default function Home() {
@@ -107,10 +108,8 @@ export default function Home() {
 
         </div>
 
-        <div className="flex flex-col w-1/4 bg-secondary_dark rounded-lg p-3 gap-3">
-          <DropDown />
-          <DropDown />
-        </div>
+        <Users />
+
       </div>
     </div>
   );
