@@ -23,3 +23,7 @@ export const deleteUser = (data) => {
 export const updateUser = (data) => {
     return http.post(`${prefixUrl}/updateUser`, JSON.stringify(data));
 };
+
+export const deleteHero = (data) => {
+    return http.post(`${prefixUrl}/deleteHero`, JSON.stringify(data));
+};

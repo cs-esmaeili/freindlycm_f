@@ -4,7 +4,8 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import DeleteUser from './DeleteUser';
 import { FiEdit } from "react-icons/fi";
 import UserUpdate from './UserUpdate';
-
+import { MdDelete } from "react-icons/md";
+import DeleteHero from './DeleteHero';
 
 const DropDown = ({ updateList, user, editMode, name, heroList, leader }) => {
 
@@ -88,6 +89,10 @@ const DropDown = ({ updateList, user, editMode, name, heroList, leader }) => {
                                     width={35}
                                     height={35}
                                 />
+                                {editMode &&
+                                    <DeleteHero updateList={updateList} user_id={user._id} hero_id={value._id} />
+                                }
+
                             </div>
                         </div>
                     )
