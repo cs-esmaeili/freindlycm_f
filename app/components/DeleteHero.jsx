@@ -50,11 +50,9 @@ const DeleteHero = ({ updateList, user_id, hero_id }) => {
         }
     }
 
-    useEffect(() => {
-    }, []);
 
     return (
-        <div className="ml-3 bg-primary rounded-full p-2" onClick={() => {
+        <div className="ml-3 bg-primary rounded-full p-2 h-fit" onClick={() => {
             sendData();
         }}>
             {requestStatus.loading &&

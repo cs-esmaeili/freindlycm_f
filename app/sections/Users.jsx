@@ -37,7 +37,7 @@ const Users = ({ editMode }) => {
 
 
     return (
-        <div className="flex flex-col w-1/4 bg-secondary_dark rounded-lg p-3 gap-3">
+        <div className="flex flex-col w-1/4 bg-secondary_dark rounded-lg p-3 gap-3 overflow-auto">
             {requestStatus.loading &&
                 <div className='flex justify-center items-center h-full'>
                     <div className="w-12 h-12 rounded-full animate-spin

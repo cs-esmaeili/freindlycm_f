@@ -50,9 +50,6 @@ const DeleteUser = ({ updateList, user_id }) => {
         }
     }
 
-    useEffect(() => {
-    }, []);
-
     return (
         <div className="ml-3 bg-primary rounded-full p-2" onClick={() => {
             sendData();

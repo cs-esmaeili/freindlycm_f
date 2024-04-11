@@ -27,3 +27,11 @@ export const updateUser = (data) => {
 export const deleteHero = (data) => {
     return http.post(`${prefixUrl}/deleteHero`, JSON.stringify(data));
 };
+
+export const classList = () => {
+    return http.get(`${prefixUrl}/classList`);
+};
+
+export const addHero = (data) => {
+    return http.post(`${prefixUrl}/addHero`, JSON.stringify(data));
+};

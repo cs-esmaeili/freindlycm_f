@@ -4,8 +4,8 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import DeleteUser from './DeleteUser';
 import { FiEdit } from "react-icons/fi";
 import UserUpdate from './UserUpdate';
-import { MdDelete } from "react-icons/md";
 import DeleteHero from './DeleteHero';
+import AddHero from './AddHero';
 
 const DropDown = ({ updateList, user, editMode, name, heroList, leader }) => {
 
@@ -72,31 +72,38 @@ const DropDown = ({ updateList, user, editMode, name, heroList, leader }) => {
             <div className={`flex-col w-full ${heroList && "gap-3"} hidden ${open && "!flex"}`}>
                 {heroList && heroList.map((value, index) => {
                     return (
-                        <div className={`flex bg-secondary p-2 rounded-md items-center w-full ${value.inFarm && "bg-green-600"}`}>
-                            <div className="flex items-center gap-2 w-2/3">
+                        <div className={`flex bg-secondary p-2 rounded-md justify-between items-center w-full h-fit ${value.inFarm && "bg-green-600"}`}>
+                            <div className="flex items-center gap-2 w-fit">
                                 {value.name}
                             </div>
-                            <div className="w-1/3 flex justify-end gap-2">
-                                <Image
-                                    src={value.class.specIcon}
-                                    alt="icon"
-                                    width={35}
-                                    height={35}
-                                />
-                                <Image
-                                    src={value.class.classIcon}
-                                    alt="icon"
-                                    width={35}
-                                    height={35}
-                                />
+                            <div className="w-fit flex flex-wrap h-fit justify-end items-center gap-2">
+                                <div className='flex h-fit min-w-[35px] gap-2'>
+                                    <Image
+                                        src={value.class.specIcon}
+                                        alt="icon"
+                                        width={35}
+                                        height={35}
+                                    />
+                                    <Image
+                                        src={value.class.classIcon}
+                                        alt="icon"
+                                        width={35}
+                                        height={35}
+                                    />
+                                </div>
                                 {editMode &&
-                                    <DeleteHero updateList={updateList} user_id={user._id} hero_id={value._id} />
+                                    <div>
+                                        <DeleteHero updateList={updateList} user_id={user._id} hero_id={value._id} />
+                                    </div>
                                 }
 
                             </div>
                         </div>
                     )
                 })}
+                {editMode &&
+                    <AddHero user_id={user._id} updateList={updateList} />
+                }
             </div>
         </div>
     );
