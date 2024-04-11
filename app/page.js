@@ -7,7 +7,7 @@ import Users from "./sections/Users";
 import Gps from "./sections/Gps";
 
 
-export default function Home() {
+export default function Home({ editMode }) {
   return (
     <div className="flex relative w-full h-screen max-w-full max-h-full overflow-hidden">
 
@@ -37,7 +37,7 @@ export default function Home() {
           <Token />
         </div>
         <Gps />
-        <Users />
+        <Users editMode={editMode} />
       </div>
     </div>
   );

@@ -32,10 +32,6 @@ const Token = () => {
         }
     }, [requestStatus.response]);
 
-    useEffect(() => {
-        if (lastPrice)
-            console.log("local = " + lastPrice.token);
-    }, [lastPrice]);
 
     useEffect(() => {
         socket = io(Config.api);

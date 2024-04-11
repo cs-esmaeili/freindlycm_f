@@ -13,6 +13,6 @@ export const gpList = () => {
     return http.get(`${prefixUrl}/gpList`);
 };
 
-// export const updateRegisterPure = (data) => {
-//     return http.post(`${prefixUrl}/updateRegisterPure`, JSON.stringify(data));
-// };
+export const addUser = (data) => {
+    return http.post(`${prefixUrl}/addUser`, JSON.stringify(data));
+};

@@ -33,7 +33,6 @@ const Gps = () => {
     useEffect(() => {
         getData();
     }, []);
-    let a = []
 
     return (
         <div className="flex flex-col w-2/4 gap-2 overflow-auto">

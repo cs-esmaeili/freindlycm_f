@@ -1,15 +1,18 @@
 import DropDown from "@/app/components/DropDown";
 import Image from 'next/image';
+import { GoPlus } from "react-icons/go";
 import { userList } from '@/services/Requests';
 import { useState, useEffect } from 'react';
+import UserUpdate from "../components/UserUpdate";
 
-const Users = () => {
+const Users = ({ editMode }) => {
 
     const [requestStatus, setRequestStatus] = useState({
         error: null,
         loading: true,
         response: null
     });
+    const [insertMode, setInsertMode] = useState(false);
 
     const getData = async () => {
         try {
@@ -31,7 +34,8 @@ const Users = () => {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [insertMode]);
+
 
     return (
         <div className="flex flex-col w-1/4 bg-secondary_dark rounded-lg p-3 gap-3">
@@ -45,6 +49,16 @@ const Users = () => {
                 return (<DropDown name={value.name} heroList={value.heroList} leader={value.leader} />)
             })}
             {requestStatus.error && <div className='flex justify-center items-center h-full'>{requestStatus.error}</div>}
+
+            {editMode && insertMode && <UserUpdate setInsertMode={setInsertMode} />}
+
+            {editMode &&
+                <div className='flex flex-col items-center bg-secondary p-3 rounded-md gap-3 hover:border-2' onClick={() => {
+                    setInsertMode(true);
+                }}>
+                    <GoPlus className="text-xl" />
+                </div>
+            }
 
         </div>
     );
