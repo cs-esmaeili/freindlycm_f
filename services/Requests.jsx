@@ -20,3 +20,6 @@ export const addUser = (data) => {
 export const deleteUser = (data) => {
     return http.post(`${prefixUrl}/deleteUser`, JSON.stringify(data));
 };
+export const updateUser = (data) => {
+    return http.post(`${prefixUrl}/updateUser`, JSON.stringify(data));
+};

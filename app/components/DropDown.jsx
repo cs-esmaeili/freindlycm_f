@@ -2,12 +2,16 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import DeleteUser from './DeleteUser';
+import { FiEdit } from "react-icons/fi";
+import UserUpdate from './UserUpdate';
 
 
 const DropDown = ({ updateList, user, editMode, name, heroList, leader }) => {
 
     const [open, setOpen] = useState(false);
     const [inFarmNumber, setInFarmNumber] = useState(null);
+
+    const [userEditMode, setUserEditMode] = useState(false);
 
     useEffect(() => {
         let localInFarm = 0;
@@ -52,8 +56,18 @@ const DropDown = ({ updateList, user, editMode, name, heroList, leader }) => {
                     </div>
                 </div>
                 {editMode && <DeleteUser updateList={updateList} user_id={user._id} />}
+                {editMode && <div className="ml-3 bg-primary rounded-full p-2" onClick={() => {
+                    setUserEditMode(true);
+                }}>
+                    <FiEdit className="text-lg text-blue-500" />
+                </div>}
 
             </div>
+
+            {editMode && userEditMode &&
+                <UserUpdate updateList={updateList} setUserEditMode={setUserEditMode} Ename={name} Eleader={leader} userEditMode user_id={user._id} />
+            }
+
             <div className={`flex-col w-full ${heroList && "gap-3"} hidden ${open && "!flex"}`}>
                 {heroList && heroList.map((value, index) => {
                     return (

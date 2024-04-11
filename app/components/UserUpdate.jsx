@@ -1,10 +1,10 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import Image from 'next/image';
-import { useState, useRef } from 'react';
-import { addUser } from '@/services/Requests';
+import { useState, useRef, useEffect } from 'react';
+import { addUser, updateUser } from '@/services/Requests';
 
-const UserUpdate = ({ setInsertMode }) => {
+const UserUpdate = ({ updateList, setInsertMode, setUserEditMode, userEditMode, user_id, Ename, Eleader }) => {
 
     const [leader, setLeader] = useState(3);
     const ref = useRef(null);
@@ -24,7 +24,13 @@ const UserUpdate = ({ setInsertMode }) => {
                 loading: true,
                 response: null
             });
-            const { data } = await addUser({ leader, name: ref.current.innerText });
+            let request = null;
+            if (userEditMode) {
+                request = await updateUser({ user_id, leader, name: ref.current.innerText });
+            } else {
+                request = await addUser({ leader, name: ref.current.innerText });
+            }
+            const { data } = request;
             setRequestStatus({
                 error: null,
                 loading: false,
@@ -32,12 +38,18 @@ const UserUpdate = ({ setInsertMode }) => {
             });
             setTimeout(() => {
                 setLeader(3);
-                setInsertMode(false);
+                if (!userEditMode) {
+                    setInsertMode(false);
+                } else {
+                    updateList();
+                }
                 setRequestStatus({
                     error: null,
                     loading: false,
                     response: null
                 });
+                if (userEditMode)
+                    setUserEditMode(false);
             }, 2000);
 
         } catch (error) {
@@ -50,15 +62,27 @@ const UserUpdate = ({ setInsertMode }) => {
 
             setTimeout(() => {
                 setLeader(3);
-                setInsertMode(false);
+                if (!userEditMode) {
+                    setInsertMode(false);
+                } else {
+                    updateList();
+                }
                 setRequestStatus({
                     error: null,
                     loading: false,
                     response: null
                 });
+                if (userEditMode)
+                    setUserEditMode(false);
             }, 2000);
         }
     }
+
+    useEffect(() => {
+        if (userEditMode) {
+            setLeader(Eleader);
+        }
+    }, [userEditMode]);
 
     return (
         <div className='flex flex-col items-center border-2 border-green-500 border-dashed p-3 rounded-md gap-3 hover:border-2'>
@@ -75,7 +99,7 @@ const UserUpdate = ({ setInsertMode }) => {
                 }}>
                     <div className='flex flex-col gap-2 items-center'>
                         <div className='flex  gap-2 items-center'>
-                            <div ref={ref} contentEditable autoFocus={true} suppressContentEditableWarning={true} >{"Name"}</div>
+                            <div ref={ref} contentEditable autoFocus={true} suppressContentEditableWarning={true} >{(userEditMode) ? Ename : "Name"}</div>
                         </div>
                         <div className='flex  gap-2 items-center'>
                             <div className="flex gap-3">
@@ -117,7 +141,11 @@ const UserUpdate = ({ setInsertMode }) => {
                     </div>
                     <div className="flex gap-2 mx-2 h-fit items-center justify-center" >
                         <button className="text-red-300 bg-secondary rounded-md p-2" onClick={() => {
-                            setInsertMode(false);
+                            if (userEditMode) {
+                                setUserEditMode(false);
+                            } else {
+                                setInsertMode(false);
+                            }
                         }}>cancel</button>
                         <button className="text-green-300 bg-secondary rounded-md p-2" onClick={() => {
                             sendData();
