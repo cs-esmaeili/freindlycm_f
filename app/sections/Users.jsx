@@ -1,5 +1,4 @@
 import DropDown from "@/app/components/DropDown";
-import Image from 'next/image';
 import { GoPlus } from "react-icons/go";
 import { userList } from '@/services/Requests';
 import { useState, useEffect } from 'react';
@@ -25,7 +24,7 @@ const Users = ({ editMode }) => {
         } catch (error) {
             console.log(error);
             setRequestStatus({
-                error: "Something is wrong !",
+                error: (error?.response?.data?.message) ? (error?.response?.data?.message) : "Something is wrong !",
                 loading: false,
                 response: null
             })
@@ -46,7 +45,7 @@ const Users = ({ editMode }) => {
                 </div>
             }
             {requestStatus.response && requestStatus.response.map((value, index) => {
-                return (<DropDown name={value.name} heroList={value.heroList} leader={value.leader} />)
+                return (<DropDown updateList={getData} user={value} editMode={editMode} name={value.name} heroList={value.heroList} leader={value.leader} />)
             })}
             {requestStatus.error && <div className='flex justify-center items-center h-full'>{requestStatus.error}</div>}
 

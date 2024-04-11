@@ -16,3 +16,7 @@ export const gpList = () => {
 export const addUser = (data) => {
     return http.post(`${prefixUrl}/addUser`, JSON.stringify(data));
 };
+
+export const deleteUser = (data) => {
+    return http.post(`${prefixUrl}/deleteUser`, JSON.stringify(data));
+};

@@ -23,7 +23,7 @@ const Gps = () => {
         } catch (error) {
             console.log(error);
             setRequestStatus({
-                error: "Something is wrong !",
+                error: (error?.response?.data?.message) ? (error?.response?.data?.message) : "Something is wrong !",
                 loading: false,
                 response: null
             })

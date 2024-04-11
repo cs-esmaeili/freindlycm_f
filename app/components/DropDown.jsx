@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import DeleteUser from './DeleteUser';
 
-const DropDown = ({ name, heroList, leader }) => {
+
+const DropDown = ({ updateList, user, editMode, name, heroList, leader }) => {
 
     const [open, setOpen] = useState(false);
     const [inFarmNumber, setInFarmNumber] = useState(null);
@@ -17,34 +19,39 @@ const DropDown = ({ name, heroList, leader }) => {
         setInFarmNumber(localInFarm);
     }, [heroList]);
 
+
+
     return (
         <div className='flex flex-col items-center bg-secondary p-3 rounded-md gap-3 hover:border-2'>
-            <div className='flex w-full justify-between' onClick={() => {
-                setOpen(!open);
-            }}>
-                <div className='flex gap-2 items-center'>
-                    <div>{name}</div>
-                    {(leader == 1 || leader == 2) &&
-                        <div>
-                            <Image
-                                src={(leader == 1) ? "/leader.png" : "/coleader.png"}
-                                alt="icon"
-                                width={35}
-                                height={35}
-                            />
-                        </div>
-                    }
+            <div className='flex w-full justify-between'>
+                <div className='flex w-full justify-between' onClick={() => {
+                    setOpen(!open);
+                }}>
+                    <div className='flex gap-2 items-center'>
+                        <div>{name}</div>
+                        {(leader == 1 || leader == 2) &&
+                            <div>
+                                <Image
+                                    src={(leader == 1) ? "/leader.png" : "/coleader.png"}
+                                    alt="icon"
+                                    width={35}
+                                    height={35}
+                                />
+                            </div>
+                        }
+                    </div>
+                    <div className='flex items-center'>
+                        {inFarmNumber &&
+                            <span>{inFarmNumber}</span>
+                        }
+                        {open ?
+                            <IoIosArrowUp className='ml-5' />
+                            :
+                            <IoIosArrowDown className='ml-5' />
+                        }
+                    </div>
                 </div>
-                <div className='flex items-center'>
-                    {inFarmNumber &&
-                        <span>{inFarmNumber}</span>
-                    }
-                    {open ?
-                        <IoIosArrowUp className='ml-5' />
-                        :
-                        <IoIosArrowDown className='ml-5' />
-                    }
-                </div>
+                {editMode && <DeleteUser updateList={updateList} user_id={user._id} />}
 
             </div>
             <div className={`flex-col w-full ${heroList && "gap-3"} hidden ${open && "!flex"}`}>
@@ -71,8 +78,6 @@ const DropDown = ({ name, heroList, leader }) => {
                         </div>
                     )
                 })}
-
-
             </div>
         </div>
     );

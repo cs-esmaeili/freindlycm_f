@@ -1,7 +1,7 @@
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { addUser } from '@/services/Requests';
 
 const UserUpdate = ({ setInsertMode }) => {
@@ -17,7 +17,13 @@ const UserUpdate = ({ setInsertMode }) => {
     });
 
     const sendData = async () => {
+
         try {
+            setRequestStatus({
+                error: null,
+                loading: true,
+                response: null
+            });
             const { data } = await addUser({ leader, name: ref.current.innerText });
             setRequestStatus({
                 error: null,
@@ -37,7 +43,7 @@ const UserUpdate = ({ setInsertMode }) => {
         } catch (error) {
             console.log(error);
             setRequestStatus({
-                error: "Something is wrong !",
+                error: (error?.response?.data?.message) ? (error?.response?.data?.message) : "Something is wrong !",
                 loading: false,
                 response: null
             })
@@ -54,8 +60,6 @@ const UserUpdate = ({ setInsertMode }) => {
         }
     }
 
-    useEffect(() => {
-    }, []);
     return (
         <div className='flex flex-col items-center border-2 border-green-500 border-dashed p-3 rounded-md gap-3 hover:border-2'>
             {requestStatus.loading &&
@@ -121,7 +125,7 @@ const UserUpdate = ({ setInsertMode }) => {
                     </div>
                     <div className='flex items-center'>
                         <span>0</span>
-                        <IoIosArrowUp className='ml-5' />
+                        <IoIosArrowDown className='ml-5' />
                     </div>
 
                 </div>
