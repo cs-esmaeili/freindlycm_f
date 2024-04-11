@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { tokenPriceList as RtokenPriceList } from '@/services/Requests'
 import { io } from "socket.io-client";
 import Config from "@/config.json";
 import { notifyUser } from '@/app/utils/notification';

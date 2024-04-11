@@ -42,7 +42,7 @@ const Users = () => {
                 </div>
             }
             {requestStatus.response && requestStatus.response.map((value, index) => {
-                return (<DropDown name={value.name} heroList={value.heroList} />)
+                return (<DropDown name={value.name} heroList={value.heroList} leader={value.leader} />)
             })}
             {requestStatus.error && <div className='flex justify-center items-center h-full'>{requestStatus.error}</div>}
 

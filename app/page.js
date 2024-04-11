@@ -1,11 +1,10 @@
 'use client'
 
 import VideoJS from "@/app/components/videoPlayer";
-import Image from 'next/image';
-import DropDown from "./components/DropDown";
 import Token from "./sections/Token";
 import DiscAndLogo from "./sections/DiscAndLogo";
 import Users from "./sections/Users";
+import Gps from "./sections/Gps";
 
 
 export default function Home() {
@@ -37,79 +36,8 @@ export default function Home() {
           <DiscAndLogo />
           <Token />
         </div>
-
-        <div className="flex flex-col w-2/4 gap-2 overflow-auto">
-
-          {/* <div className="flex w-full h-fit gap-2">
-            <div className="flex flex-col w-2/4 bg-primary rounded-lg p-3 gap-2">
-              {new Array(9).fill(null).map(() =>
-                <div className="flex bg-secondary p-2 rounded-md items-center">
-                  <div className="flex items-center gap-2 w-2/3">
-                    <Image
-                      src="/leader.png"
-                      alt="icon"
-                      width={35}
-                      height={35}
-                    />
-                    salam
-                  </div>
-                  <div className="w-1/3 flex justify-end gap-2">
-                    <Image
-                      src="/spec/mage/frost.png"
-                      alt="icon"
-                      width={35}
-                      height={35}
-                    />
-                    <Image
-                      src="/class/mage.png"
-                      alt="icon"
-                      width={35}
-                      height={35}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="flex w-1/12 items-center justify-center">
-              <LiaExchangeAltSolid className="text-5xl bg-primary rounded-lg p-3" />
-            </div>
-            <div className="flex flex-col w-2/4 bg-primary rounded-lg p-3 gap-2">
-              {new Array(9).fill(null).map(() =>
-                <div className="flex bg-secondary p-2 rounded-md items-center">
-                  <div className="flex items-center gap-2 w-2/3">
-                    <Image
-                      src="/leader.png"
-                      alt="icon"
-                      width={35}
-                      height={35}
-                    />
-                    salam
-                  </div>
-                  <div className="w-1/3 flex justify-end gap-2">
-                    <Image
-                      src="/spec/mage/frost.png"
-                      alt="icon"
-                      width={35}
-                      height={35}
-                    />
-                    <Image
-                      src="/class/mage.png"
-                      alt="icon"
-                      width={35}
-                      height={35}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-          </div> */}
-
-
-
-        </div>
-
+        <Gps />
         <Users />
-
       </div>
     </div>
   );
