@@ -38,7 +38,7 @@ export default function Home({ editMode }) {
       <div className="flex w-full p-5 z-20 gap-3 h-screen max-h-screen min-w-0 min-h-0">
 
         <div className="flex flex-col w-1/4 gap-3">
-          <DiscAndLogo />
+          <DiscAndLogo editMode={editMode}/>
           <Token />
         </div>
         <Gps editMode={editMode} update={updateGps} setUpdate={() => setUpdateUsers(!updateUsers)} />

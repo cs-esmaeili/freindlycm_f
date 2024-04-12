@@ -48,3 +48,7 @@ export const deleteHeroFromGp = (data) => {
 export const deleteGp = (data) => {
     return http.post(`${prefixUrl}/deleteGp`, JSON.stringify(data));
 };
+
+export const setGeneralData = (data) => {
+    return http.post(`${prefixUrl}/setGeneralData`, JSON.stringify(data));
+};

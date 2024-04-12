@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { getGeneralData } from '@/services/Requests';
 import { useState, useEffect } from 'react';
+import ChangeGeneralData from '../components/ChangeGeneralData';
 
-const DiscAndLogo = () => {
+const DiscAndLogo = ({ editMode }) => {
 
     const [requestStatus, setRequestStatus] = useState({
         error: null,
@@ -51,8 +52,10 @@ const DiscAndLogo = () => {
                     border-y border-solid border-yellow-500 border-t-transparent shadow-md"></div>
                         </div>
                     }
-                    {requestStatus.response && <span className='ltr text-justify'>{requestStatus.response.text[0]}</span>}
                     {requestStatus.error && <span>{requestStatus.error}</span>}
+                    {requestStatus.response &&
+                        <ChangeGeneralData title={requestStatus.response.text[0]} editMode={editMode} />
+                    }
                 </div>
             </div>
             <div className="flex flex-col h-1/3 p-5 gap-3 bg-primary justify-evenly items-center rounded-lg overflow-auto">
@@ -62,8 +65,10 @@ const DiscAndLogo = () => {
                     border-y border-solid border-yellow-500 border-t-transparent shadow-md"></div>
                     </div>
                 }
-                {requestStatus.response && <span className='ltr text-justify'>{requestStatus.response.text[1]}</span>}
                 {requestStatus.error && <div className='flex justify-center items-center h-full'>{requestStatus.error}</div>}
+                {requestStatus.response &&
+                    <ChangeGeneralData disc={requestStatus.response.text[1]} editMode={editMode} />
+                }
             </div >
         </>
     );
