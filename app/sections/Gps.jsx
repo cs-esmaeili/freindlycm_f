@@ -50,15 +50,15 @@ const Gps = ({ editMode, update, setUpdate }) => {
         return true;
     }
     return (
-        <div className="flex flex-col w-2/4 gap-2 overflow-auto">
+        <div className="flex flex-col  w-full lg:w-2/4  gap-2 overflow-auto">
             {requestStatus.response && requestStatus.response.map((row, index) =>
                 <div className="flex w-full h-fit gap-2">
-                    <div className={`flex flex-col w-2/4 bg-transparent rounded-lg p-3 gap-2 ${colVisibility(row.col1) && "!bg-primary"}`}>
+                    <div className={`flex flex-col w-2/4 bg-transparent rounded-lg p-3 gap-2  ${colVisibility(row.col2) && "!bg-primary"}`}>
                         {row.col1 && row.col1.map((hero, index) =>
-                            <div className="flex bg-secondary p-2 rounded-md items-center" draggable onDragStart={(e) => {
+                            <div className="flex bg-secondary p-2 rounded-lg items-center flex-wrap lg:flex-nowrap  justify-center gap-3 " draggable onDragStart={(e) => {
                                 e.dataTransfer.setData("text/plain", hero._id);
                             }}>
-                                <div className="flex items-center gap-2 w-2/3">
+                                <div className="flex items-center gap-2 w-2/3 min-w-fit  justify-center lg:justify-start">
                                     {(hero.user.leader == 1 || hero.user.leader == 2) &&
                                         <div>
                                             <Image
@@ -71,7 +71,7 @@ const Gps = ({ editMode, update, setUpdate }) => {
                                     }
                                     <span>{hero.name}</span>
                                 </div>
-                                <div className="w-1/3 flex justify-end gap-2">
+                                <div className="w-1/3 flex min-w-fit justify-end gap-2">
                                     <Image
                                         src={hero.class.specIcon}
                                         alt="icon"
@@ -95,15 +95,15 @@ const Gps = ({ editMode, update, setUpdate }) => {
                             </div>
                         }
                     </div>
-                    <div className={`flex w-1/12 items-center justify-center opacity-0 ${(((row.col1 && row.col1.length > 0) && (row.col2 && row.col2.length > 0)) || (editMode && (colVisibility(row.col1) && colVisibility(row.col2)))) && "!opacity-100"}`}>
+                    <div className={` w-1/12 items-center justify-center hidden sm:flex opacity-0 ${(((row.col1 && row.col1.length > 0) && (row.col2 && row.col2.length > 0)) || (editMode && (colVisibility(row.col1) && colVisibility(row.col2)))) && "!opacity-100"}`}>
                         <LiaExchangeAltSolid className="text-5xl bg-primary rounded-lg p-3" />
                     </div>
-                    <div className={`flex flex-col w-2/4 bg-transparent rounded-lg p-3 gap-2 ${colVisibility(row.col2) && "!bg-primary"}`}>
+                    <div className={`flex flex-col w-2/4 bg-transparent rounded-lg p-3 gap-2  ${colVisibility(row.col2) && "!bg-primary"}`}>
                         {row.col2 && row.col2.map((hero, index) =>
-                            <div className="flex bg-secondary p-2 rounded-md items-center" draggable onDragStart={(e) => {
+                            <div className="flex bg-secondary p-2 rounded-lg items-center flex-wrap lg:flex-nowrap  justify-center gap-3 " draggable onDragStart={(e) => {
                                 e.dataTransfer.setData("text/plain", hero._id);
                             }}>
-                                <div className="flex items-center gap-2 w-2/3">
+                                <div className="flex items-center gap-2 w-2/3 min-w-fit  justify-center lg:justify-start">
                                     {(hero.user.leader == 1 || hero.user.leader == 2) &&
                                         <div>
                                             <Image
@@ -116,7 +116,7 @@ const Gps = ({ editMode, update, setUpdate }) => {
                                     }
                                     <span>{hero.name}</span>
                                 </div>
-                                <div className="w-1/3 flex justify-end gap-2">
+                                <div className="w-1/3 flex justify-end gap-2 min-w-fit">
                                     <Image
                                         src={hero.class.specIcon}
                                         alt="icon"

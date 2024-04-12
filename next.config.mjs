@@ -16,6 +16,14 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.back.freindlycm.ir',
+      },
+      {
+        protocol: 'http',
+        hostname: 'www.back.freindlycm.ir', // Add this line
       }
     ],
   },
