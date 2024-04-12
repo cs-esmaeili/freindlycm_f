@@ -4,7 +4,7 @@ import { userList } from '@/services/Requests';
 import { useState, useEffect } from 'react';
 import UserUpdate from "../components/UserUpdate";
 
-const Users = ({ editMode }) => {
+const Users = ({ editMode, update , setUpdate }) => {
 
     const [requestStatus, setRequestStatus] = useState({
         error: null,
@@ -33,7 +33,7 @@ const Users = ({ editMode }) => {
 
     useEffect(() => {
         getData();
-    }, [insertMode]);
+    }, [insertMode, update]);
 
 
     return (
@@ -45,11 +45,11 @@ const Users = ({ editMode }) => {
                 </div>
             }
             {requestStatus.response && requestStatus.response.map((value, index) => {
-                return (<DropDown updateList={getData} user={value} editMode={editMode} name={value.name} heroList={value.heroList} leader={value.leader} />)
+                return (<DropDown updateList={getData} user={value} editMode={editMode} name={value.name} heroList={value.heroList} leader={value.leader} setUpdate={setUpdate} />)
             })}
             {requestStatus.error && <div className='flex justify-center items-center h-full'>{requestStatus.error}</div>}
 
-            {editMode && insertMode && <UserUpdate setInsertMode={setInsertMode} />}
+            {editMode && insertMode && <UserUpdate setInsertMode={setInsertMode} setUpdate={setUpdate}  />}
 
             {editMode &&
                 <div className='flex flex-col items-center bg-secondary p-3 rounded-md gap-3 hover:border-2' onClick={() => {

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { addUser, updateUser } from '@/services/Requests';
 
-const UserUpdate = ({ updateList, setInsertMode, setUserEditMode, userEditMode, user_id, Ename, Eleader }) => {
+const UserUpdate = ({ updateList, setInsertMode, setUserEditMode, userEditMode, user_id, Ename, Eleader, setUpdate }) => {
 
     const [leader, setLeader] = useState(3);
     const ref = useRef(null);
@@ -41,6 +41,7 @@ const UserUpdate = ({ updateList, setInsertMode, setUserEditMode, userEditMode, 
                 if (!userEditMode) {
                     setInsertMode(false);
                 } else {
+                    setUpdate();
                     updateList();
                 }
                 setRequestStatus({

@@ -7,7 +7,7 @@ import DeleteGp from "../components/DeleteGp";
 import AddHeroToGp from "../components/AddHeroToGp";
 import DeleteHeroFromGp from "../components/DeleteHeroFromGp";
 
-const Gps = ({ editMode }) => {
+const Gps = ({ editMode, update, setUpdate }) => {
 
 
     const [requestStatus, setRequestStatus] = useState({
@@ -24,7 +24,8 @@ const Gps = ({ editMode }) => {
                 error: null,
                 loading: false,
                 response: data
-            })
+            });
+            setUpdate();
         } catch (error) {
             console.log(error);
             setRequestStatus({
@@ -37,7 +38,7 @@ const Gps = ({ editMode }) => {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [update]);
 
     const colVisibility = (col) => {
         if (!col)
@@ -90,7 +91,7 @@ const Gps = ({ editMode }) => {
                             <div className="mt-auto flex gap-3 flex-col">
                                 <DeleteHeroFromGp gp_id={row._id} colNumber={1} update={getData} />
                                 <AddHeroToGp gp_id={row._id} colNumber={1} update={getData} />
-                                <DeleteGp />
+                                <DeleteGp gp_id={row._id} colNumber={1} update={getData} />
                             </div>
                         }
                     </div>
@@ -135,7 +136,7 @@ const Gps = ({ editMode }) => {
                             <div className="mt-auto flex gap-3 flex-col">
                                 <DeleteHeroFromGp gp_id={row._id} colNumber={2} update={getData} />
                                 <AddHeroToGp gp_id={row._id} colNumber={2} update={getData} />
-                                <DeleteGp />
+                                <DeleteGp gp_id={row._id} colNumber={2} update={getData} />
                             </div>
                         }
                     </div>

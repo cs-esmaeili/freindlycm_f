@@ -5,9 +5,14 @@ import Token from "./sections/Token";
 import DiscAndLogo from "./sections/DiscAndLogo";
 import Users from "./sections/Users";
 import Gps from "./sections/Gps";
+import { useState } from "react";
 
 
 export default function Home({ editMode }) {
+
+  const [updateUsers, setUpdateUsers] = useState(false);
+  const [updateGps, setUpdateGps] = useState(false);
+
   return (
     <div className="flex relative w-full h-screen max-w-full max-h-full overflow-hidden">
 
@@ -36,8 +41,8 @@ export default function Home({ editMode }) {
           <DiscAndLogo />
           <Token />
         </div>
-        <Gps editMode={editMode} />
-        <Users editMode={editMode} />
+        <Gps editMode={editMode} update={updateGps} setUpdate={() => setUpdateUsers(!updateUsers)} />
+        <Users editMode={editMode} update={updateUsers} setUpdate={() => setUpdateGps(!updateGps)} />
       </div>
     </div>
   );
