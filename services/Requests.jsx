@@ -35,3 +35,13 @@ export const classList = () => {
 export const addHero = (data) => {
     return http.post(`${prefixUrl}/addHero`, JSON.stringify(data));
 };
+
+export const addGp = (data) => {
+    return http.post(`${prefixUrl}/addGp`, JSON.stringify(data));
+};
+export const addHeroToGp = (data) => {
+    return http.post(`${prefixUrl}/addHeroToGp`, JSON.stringify(data));
+};
+export const deleteHeroFromGp = (data) => {
+    return http.post(`${prefixUrl}/deleteHeroFromGp`, JSON.stringify(data));
+};

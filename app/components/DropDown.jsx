@@ -69,10 +69,13 @@ const DropDown = ({ updateList, user, editMode, name, heroList, leader }) => {
                 <UserUpdate updateList={updateList} setUserEditMode={setUserEditMode} Ename={name} Eleader={leader} userEditMode user_id={user._id} />
             }
 
-            <div className={`flex-col w-full ${heroList && "gap-3"} hidden ${open && "!flex"}`}>
+            <div className={`flex-col w-full ${heroList && "gap-3"} hidden ${open && "!flex"}`} >
                 {heroList && heroList.map((value, index) => {
                     return (
-                        <div className={`flex bg-secondary p-2 rounded-md justify-between items-center w-full h-fit ${value.inFarm && "bg-green-600"}`}>
+                        <div draggable onDragStart={(e) => {
+                            e.dataTransfer.setData("text/plain", value._id);
+                        }}
+                         className={`flex bg-secondary p-2 rounded-md justify-between items-center w-full h-fit ${value.inFarm && "!bg-green-600"}`}>
                             <div className="flex items-center gap-2 w-fit">
                                 {value.name}
                             </div>

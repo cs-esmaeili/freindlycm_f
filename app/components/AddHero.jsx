@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { addHero } from '@/services/Requests';
 import Image from 'next/image';
 import ClassList from './ClassList';
@@ -58,12 +58,6 @@ const AddHero = ({ user_id, updateList }) => {
             }, 1500);
         }
     }
-
-    useEffect(() => {
-        // console.log(selectClass);
-    }, []);
-
-
     return (
         <div className="flex flex-col p-2  rounded-md bg-secondary">
             {requestStatus.loading &&

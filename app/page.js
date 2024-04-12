@@ -36,7 +36,7 @@ export default function Home({ editMode }) {
           <DiscAndLogo />
           <Token />
         </div>
-        <Gps />
+        <Gps editMode={editMode} />
         <Users editMode={editMode} />
       </div>
     </div>
